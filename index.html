@@ -4,140 +4,82 @@
     <meta charset="UTF-8">
     <title>Blog Viewer</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
-      <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #111; /* Darker background */
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            position: relative;
-            overflow: true;
-        }
-
-        /* Rainbow screen outline animation */
-        .rainbow-outline {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 5px solid transparent;
-            border-image: linear-gradient(90deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #8B00FF, #FF0000);
-            border-image-slice: 1;
-            animation: rotate-rainbow 20s linear infinite;
-            z-index: -1; /* Place the rainbow behind the content */
-        }
-
-        
-
-        
-
-        .container {
-            width: 100%;
-            max-width: 900px;
-            padding: 20px;
-            box-sizing: border-box;
-            background-color: #222; /* Slightly lighter background */
-            border: 1px solid #333;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .blog-post {
-            border: 1px solid #444;
-            padding: 20px;
-            margin-bottom: 20px;
-            background-color: #333;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-            width: 100%;
-            max-width: 900px;
-        }
-
-        .blog-post:hover {
-            background-color: #444; /* Slightly lighter background on hover */
-            cursor: pointer;
-        }
-
-        .blog-title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #56bbf9; /* Accent color for titles */
-        }
-
-        .blog-content {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #ccc; /* Lighter text color for content */
-        }
-
-        /* Make it responsive */
-        @media (max-width: 600px) {
-            .container {
-                padding: 10px;
-            }
-
-            .blog-post {
-                padding: 10px;
-            }
-
-            .blog-title {
-                font-size: 20px;
-            }
-
-            .blog-content {
-                font-size: 14px;
-            }
-        }
-
-        .blog-iframe {
-            width: 100%; /* Make the iframe responsive to its container */
-            height: 400px; /* Set the initial height for the iframe */
-            border: black; /* Remove iframe border */
-        }
-
-        /* Make the iframe container responsive */
-        @media (max-width: 600px) {
-            #blogContainer {
-                padding: 10px;
-            }
-
-            .blog-iframe {
-                height: 300px; /* Adjust the height for smaller screens */
-            }
-        }
-
-        .blog-iframe {
-            width: 100%; /* Make the iframe responsive to its container */
-            height: 400px; /* Set the initial height for the iframe */
-            border: 1px solid #555; /* Add border around the iframe */
-            margin-bottom: 20px; /* Add spacing between iframes */
-        }
-
-        /* Make the iframe container responsive */
-        @media (max-width: 600px) {
-            #blogContainer {
-                padding: 10px;
-            }
-
-            .blog-iframe {
-                height: 300px; /* Adjust the height for smaller screens */
-            }
-        }
-      
-      
-    </style>
     <style>
-      /* Add this CSS to style the elements */
-.mai {
-    background-color: rgba(0, 0, 0, 0.88); /* Semi-transparent background for the notification */
-  height: 800px;
+       
+ body {
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 3px solid #444;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+    background-color: #333;
+    width: 100%;
+    max-width: 900px;
+    overflow: hidden;
+}
+
+.blog-post:hover {
+    background-color: #444;
+    cursor: pointer;
+}
+
+.blog-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #56bbf9;
+}
+
+.blog-content {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+@media (max-width: 600px) {
+    .container, .blog-post {
+        padding: 10px;
+    }
+    .blog-title {
+        font-size: 20px;
+    }
+    .blog-content {
+        font-size: 14px;
+    }
+}
+
+.rainbow-outline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 5px solid transparent;
+    border-image: linear-gradient(90deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #8B00FF, #FF0000);
+    border-image-slice: 1;
+    animation: rotate-rainbow 20s linear infinite;
+    z-index: -1;
+}
+
+.notification {
+    background-color: rgba(0, 0, 0, 0.8);
     position: fixed;
     top: 0;
     left: 0;
@@ -145,116 +87,126 @@
     text-align: center;
     padding: 10px;
     color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.); /* Slightly transparent box shadow */
+}
+
+.notification-text {
+    font-size: 28px;
+    color: #56bbf9;
+    margin-bottom: 10px;
+}
+
+.notification-text p {
+    font-size: 18px;
+    color: #ccc;
+}
+
+.notification-text a {
+    font-size: 28px;
+    color: white;
+}
+
+.close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 30px;
+}
+
+.spacer {
+    height: 50px;
+}
+
+.blog-iframe {
+    width: 100%;
+    height: 400px;
+    border: 1px solid #555;
+    margin-bottom: 20px;
+}
+
+.container {
+    min-height: 100vh;
+}
+
+.blog-post {
+    border: 1px solid #444;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #333;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 900px;
+    overflow: hidden;
 }
 
 
-.mai h1 {
-    font-size: 28px; /* Increase the font size for the h1 element */
-    color: #56bbf9; /* Change the text color for the h1 element */
-    margin-bottom: 10px; /* Add some space below the h1 */
-}
 
-.mai p {
-    font-size: 18px; /* Increase the font size for the paragraph */
-    color: #ccc; /* Change the text color for the paragraph */
-}
-
-.m{
-    font-size: 28px; /* Increase the font size for the paragraph */
-    color: white; /* Change the text color for the paragraph */
-}
-        /* Your existing styles here */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #111; /* Darker background */
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            position: relative;
-            overflow: true;
-        }
-
-        .notification {
-            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background for the notification */
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            text-align: center;
-            padding: 10px;
-            color: #fff;
-        }
-
-        .close-button {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            cursor: pointer;
-          font-size: 30px; /* Increase the font size for a larger close button */
-}
     </style>
 </head>
 <body>
     <div class="notification">
         <span class="close-button" onclick="closeNotification()">&#10006;</span>
-        <div class="mai">
+        <div class="notification-text">
             <h1>View Any Blog</h1>
-            <p>This site is mainly deticated towards my school projects.
-              <br><br>
-              However this application allows users the ability to post their own blogs.
-              <h1>Publish Any Blog</h1>
-               <div class="m"> 
-              <br>Upload an HTML file, and it will be saved and displayed in the list of blogs.</p>
-      <a class=.m href="https://blog-sable-theta.vercel.app/upload.html">Visit the upload page</a>
-                
+            <p>This site is mainly dedicated towards my school projects.</p>
+            <p>However, this application allows users the ability to post their own blogs.</p>
+            <h1>Publish Any Blog</h1>
+            <div>
+                <p>Upload an HTML file, and it will be saved and displayed in the list of blogs.</p>
+                <a href="https://blog-sable-theta.vercel.app/upload.html">Visit the upload page</a>
             </div>
-              
-
         </div>
     </div>
     <div class="rainbow-outline"></div>
-    <div class="container">
-        <div id="blogContainer"></div>
-    </div>
+    <div class="spacer"></div>
+    <div class="container container-top-padding" id="blogContainer"></div>
     <script>
-        function closeNotification() {
-            const notification = document.querySelector(".notification");
-            notification.style.display = "none";
-        }
+    function closeNotification() {
+        const notification = document.querySelector(".notification");
+        notification.style.display = "none";
+    }
 
-        document.addEventListener("DOMContentLoaded", function () {
-    const blogContainer = document.getElementById("blogContainer");
+    document.addEventListener("DOMContentLoaded", function () {
+        const blogContainer = document.getElementById("blogContainer");
+        const containerHeight = 600; // Set the desired fixed height
 
-    // Fetch individual blog posts from the server
-    fetch("https://doesnte235246.000webhostapp.com/view.php") // Replace with the URL of your PHP script
-        .then(response => response.json())
-        .then(data => {
-            data.forEach(blogPostContent => {
-                // Create an iframe for each blog post
-                const iframe = document.createElement("iframe");
-                iframe.classList.add("blog-iframe");
+        // Fetch individual blog posts from the server
+        fetch("https://doesnte235246.000webhostapp.com/view.php") // Replace with the URL of your PHP script
+            .then(response => response.json())
+            .then(data => {
+                let totalHeight = 0;
 
-                // Set the iframe source to the content of each blog post
-                iframe.srcdoc = blogPostContent;
+                data.forEach(blogPostContent => {
+                    // Create an iframe for each blog post
+                    const iframe = document.createElement("iframe");
+                    iframe.classList.add("blog-iframe");
 
-                // Append the iframe to the blog container
-                blogContainer.appendChild(iframe);
+                    // Set the iframe source to the content of each blog post
+                    iframe.srcdoc = blogPostContent;
+
+                    // Append the iframe to the blog container
+                    blogContainer.appendChild(iframe);
+
+                    // Add the height of the iframe to the total height
+                    totalHeight += iframe.offsetHeight;
+                });
+
+                // Check if the total height exceeds the container height
+                if (totalHeight > containerHeight) {
+                    blogContainer.style.height = containerHeight + "px";
+                    blogContainer.style.overflowY = "auto"; // Add scroll bar if content exceeds the container
+                }
+            })
+            .catch(error => {
+                // Handle any errors
+                console.error("Error fetching blog posts:", error);
             });
-        })
-        .catch(error => {
-            // Handle any errors
-            console.error("Error fetching blog posts:", error);
-        });
 
-    // Close the notification after 5 seconds
-    setTimeout(closeNotification, 5000); // 5000 milliseconds (5 seconds)
-});
+        // Close the notification after 5 seconds
+        setTimeout(closeNotification, 5000); // 5000 milliseconds (5 seconds)
+    });
+</script>
 
-    </script>
 </body>
 </html>
