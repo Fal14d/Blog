@@ -153,24 +153,27 @@
     align-items: center;
 }
 
+/* Redesigned .search-input styles with border */
 .search-input {
     flex: 1;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #ccc; /* Add a border around the input field */
     border-radius: 5px;
     font-size: 16px;
-    margin-right: 10px; /* Add some spacing between input and button */
+    margin-right: 10px;
 }
 
+/* Redesigned .search-button styles with border */
 .search-button {
     padding: 10px 20px;
     background-color: #56bbf9;
-    border: none;
+    border: 1px solid #56bbf9; /* Add a border around the button */
     border-radius: 5px;
     color: #fff;
     font-size: 16px;
     cursor: pointer;
 }
+
 
 
     </style>
@@ -191,9 +194,12 @@
     </div>
     <div class="rainbow-outline"></div>
     <div class="spacer"></div>
-  <div class="search-container">
-        <input type="text" class="search-input" id="searchInput" placeholder="Search by Title">
-        <button class="search-button" onclick="searchBlogPosts()">Search</button>
+  <div class="search-notification">
+        <div class="search-content">
+            <h2>Search Blogs</h2>
+            <input type="text" class="search-input" id="searchInput" placeholder="Search by Title">
+            <button class="search-button" onclick="searchBlogPosts()">Search</button>
+        </div>
     </div>
     <div class="container container-top-padding" id="blogContainer"></div>
     <script>
